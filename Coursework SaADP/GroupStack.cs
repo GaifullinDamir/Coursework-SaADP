@@ -72,8 +72,17 @@ namespace Coursework_SaADP
             }
             return false;
         }
-       
 
-
+        public void ClearMemory()
+        {
+            Student current = _head;
+            Student temp;
+            while(current != null)
+            {
+                temp = current.GetNext();
+                current = null;
+                current = temp;
+            }
+        }
     }
 }
