@@ -15,6 +15,7 @@ namespace Coursework_SaADP
         private string _facultyName;
         private const int _numberOfGroups = 10;
         private int _groupCounter = 0;
+        private int _pHeadFree;
 
         private FacultyListNode[] _groups = new FacultyListNode[_numberOfGroups];
 
@@ -43,14 +44,17 @@ namespace Coursework_SaADP
             return _groupCounter;
         }
 
-        public FacultyStaticList()
+        public FacultyStaticList(GroupStack group)
         {
+            _groups[0].SetGroupStack(null);
             _groups[0].SetPNext(0);
-            for (int i = 1; i < _numberOfGroups; i++)
+            _pHeadFree = 1;
+            for (int i = 0; i < _numberOfGroups; i++)
             {
-                _groups[i].SetGroupStack(null);
-                _groups[i].SetPNext(i - 1);
+                int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
+                _groups[i].SetPNext(cell);
             }
+            _groupCounter = 1;
         }
 
         public bool IsFull()
@@ -60,9 +64,23 @@ namespace Coursework_SaADP
 
         public bool IsEmpty()
         {
-            return (_groupCounter == 0);
+            return (_groupCounter - 1 == 0);
         }
 
+        public void FindBigger(ref int parent, ref int current, int addedElement)
+        {
+            parent = 0;
+            current = _groups[0].GetPNext();
+            while (current != 0)
+            {
+                if(_groups[current].GetGroupStack().GetGroupNumber() >= addedElement)
+                {
+                    break;
+                }
+                parent = current;
+                current = _groups[current].GetPNext();
+            }
+        }
         public void ShowFacultys()
         {
             if(!(IsEmpty()))
@@ -76,7 +94,7 @@ namespace Coursework_SaADP
             }
         }
 
-        public int SearchGroup(int groupNumber)
+        public int SearchGroup(ref int parent, ref int current, int addedElement)
         {
             if(!(IsEmpty()))
             {
