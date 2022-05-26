@@ -9,7 +9,6 @@ namespace Coursework_SaADP
     class Student
     {
         private string _surname, _dateOfBirth;
-        private Student _next;
 
         public void SetSurname(string surname)
         {
@@ -31,27 +30,11 @@ namespace Coursework_SaADP
             return _dateOfBirth;
         }
 
-        public void SetNext(Student next)
-        {
-            _next = next;
-        }
-
-        public Student GetNext()
-        {
-            return _next;
-        }
-
-        public Student()
-        {
-
-        }
-
         public Student(string surname, string dateOfBirth)
         {
             _surname = surname;
             _dateOfBirth = dateOfBirth;
         }
 
-        
     }
 }

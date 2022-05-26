@@ -8,49 +8,46 @@ namespace Coursework_SaADP
 {
     class GroupStack
     {
-        private string _groupNumber;
-        private Student _head;
+        private int _groupNumber;
+        private StackElement _pHead;
         
-        public Student GetHead()
+        public StackElement GetHead()
         {
-            return _head;
+            return _pHead;
         }
 
-        public void SetGroupNumber(string groupNumber)
+        public void SetGroupNumber(int groupNumber)
         {
             _groupNumber = groupNumber;
         }
 
-        public string GetGroupNumber()
+        public int GetGroupNumber()
         {
             return _groupNumber;
         }
         public GroupStack()
         {
-            _groupNumber = null; 
-            _head = null;
+            _groupNumber = 0; 
+            _pHead = null;
         }
 
         public bool IsEmpty()
         {
-            return (_head is null);
+            return (_pHead is null);
         }
 
         public void AddStudent(string surname, string dateOfBirth)
         {
-            Student newStudent = new Student();
-            newStudent.SetNext(_head);
-            newStudent.SetSurname(surname);
-            newStudent.SetDateOfBirth(dateOfBirth);
-            _head = newStudent;
+            StackElement newElement = new StackElement(surname, dateOfBirth, _pHead);
+            _pHead = newElement;
         }
 
         public bool DeleteStudent()
         {
             if(!(IsEmpty()))
             {
-                Student current = _head;
-                _head = _head.GetNext();
+                StackElement current = _pHead;
+                _pHead = _pHead.GetPNext();
                 current = null;
                 return true;
             }
@@ -61,12 +58,12 @@ namespace Coursework_SaADP
         {
             if(!(IsEmpty()))
             {
-                Student current = _head;
+                StackElement current = _pHead;
                 Console.WriteLine($" Группа №{_groupNumber}");
                 while (current != null)
                 {
-                    Console.WriteLine($" Фамилия: {current.GetSurname()};" +
-                        $" год рождения: {current.GetDateOfBirht()}");
+                    Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
+                        $" год рождения: {current.GetStudent().GetDateOfBirht()}");
                 }
                 return true;
             }
@@ -75,11 +72,11 @@ namespace Coursework_SaADP
 
         public void ClearMemory()
         {
-            Student current = _head;
-            Student temp;
+            StackElement current = _pHead;
+            StackElement temp;
             while(current != null)
             {
-                temp = current.GetNext();
+                temp = current.GetPNext();
                 current = null;
                 current = temp;
             }
