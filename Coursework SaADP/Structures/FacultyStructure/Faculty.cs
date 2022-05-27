@@ -39,13 +39,12 @@ namespace Coursework.Structures.FacultyStructure
 
         public Faculty()
         {
-            //Group group = new Group();
-            
-            //_groups[0].SetGroupStack(group);
+            _groups[0] = new StaticListElement();
             _groups[0].SetPNext(0);
             _pHeedFree = 1;
-            for (int i = 0; i < _numberOfGroups; i++)
+            for (int i = 1; i < _numberOfGroups; i++)
             {
+                _groups[i] = new StaticListElement();
                 Group group = new Group();
                 _groups[i].SetGroupStack(group);
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
@@ -145,9 +144,9 @@ namespace Coursework.Structures.FacultyStructure
             {
                 _groups[current].GetGroupStack().StackClearMemory();
             }
-            for (int groupNumber = 0; groupNumber < _numberOfGroups; groupNumber++)
+            for (int i = 0; i < _numberOfGroups; i++)
             {
-                _groups[groupNumber] = null;
+                _groups[i] = null;
             }
             _groups = null;
         }
