@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace Coursework_SaADP
 {
-    class FacultyListNode
+    class StaticListElement
     {
-        private GroupStack _group;
+        private Group _group;
         private int _pNext;
 
-        public FacultyListNode()
+        public StaticListElement()
         {
             _group = null;
             _pNext = 0;
         }
 
-        public void SetGroupStack(GroupStack group)
+        public void SetGroupStack(Group group)
         {
             _group = group;
         }
 
-        public GroupStack GetGroupStack()
+        public Group GetGroupStack()
         {
             return _group;
         }

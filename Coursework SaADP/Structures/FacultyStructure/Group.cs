@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Coursework_SaADP
 {
-    class GroupStack
+    class Group
     {
         private int _groupNumber;
         private StackElement _pHead;
@@ -25,7 +25,7 @@ namespace Coursework_SaADP
         {
             return _groupNumber;
         }
-        public GroupStack()
+        public Group()
         {
             _groupNumber = 0; 
             _pHead = null;
@@ -54,7 +54,7 @@ namespace Coursework_SaADP
             return false;
         }
 
-        public bool ShowAll()
+        public bool ShowGroup()
         {
             if(!(IsEmpty()))
             {

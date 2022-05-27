@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace Coursework_SaADP
 {
-    enum Results : int
-    {
-        NotFound = -1
-    }
-    class FacultyStaticList
+    class Faculty
     {
         private string _facultyName;
         private const int _numberOfGroups = 10;
         private int _groupCounter = 0;
-        private int _pHeadFree;
+        private int _pHeedFree;
 
-        private FacultyListNode[] _groups = new FacultyListNode[_numberOfGroups];
+        private StaticListElement[] _groups = new StaticListElement[_numberOfGroups];
 
         public void SetFacultyName(string facultyName)
         {
@@ -44,11 +40,11 @@ namespace Coursework_SaADP
             return _groupCounter;
         }
 
-        public FacultyStaticList(GroupStack group)
+        public Faculty()
         {
             _groups[0].SetGroupStack(null);
             _groups[0].SetPNext(0);
-            _pHeadFree = 1;
+            _pHeedFree = 1;
             for (int i = 0; i < _numberOfGroups; i++)
             {
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
@@ -81,50 +77,65 @@ namespace Coursework_SaADP
                 current = _groups[current].GetPNext();
             }
         }
+
+        public void SearchGroup(ref int parent, ref int current, int searchedElement, ref bool check)
+        {
+            parent = 0;
+            current = _groups[0].GetPNext();
+            while(current != 0)
+            {
+                if (_groups[current].GetGroupStack().GetGroupNumber() == searchedElement)
+                {
+                    check = true;
+                    break;
+                }
+                else check = false;
+                parent = current;
+                current = _groups[current].GetPNext();
+            }
+        }
+
+        public void addGroup(Group group)
+        {
+            int freeCell = _pHeedFree;
+            _pHeedFree = _groups[freeCell].GetPNext();
+            _groups[freeCell].SetGroupStack(group);
+            if (IsEmpty())
+            {
+                _groups[0].SetPNext(freeCell);
+                _groups[freeCell].SetPNext(0);
+                return;
+            }
+            int prevGroup = 0; int currGroup = 0;
+            FindBigger(ref prevGroup, ref currGroup, group.GetGroupNumber());
+            _groups[prevGroup].SetPNext(freeCell);
+            int pNext = currGroup == 0 ? 0 : currGroup;
+            _groups[freeCell].SetPNext(pNext);
+            _groupCounter++;
+        }
+
+        public void DeleteGroup(int prevGroup, int currGroup)
+        {
+            _groups[prevGroup].SetPNext(_groups[currGroup].GetPNext());
+            _groups[currGroup].SetPNext(_pHeedFree);
+            _pHeedFree = currGroup;
+            _groupCounter--;
+        }
+
+
         public void ShowFacultys()
         {
-            if(!(IsEmpty()))
+            if (!(IsEmpty()))
             {
                 Console.WriteLine($"Название факультета: {_facultyName}");
                 int current = _groups[0].GetPNext();
-                while(current != 0)
+                while (current != 0)
                 {
-                    _groups[current].GetGroupStack().ShowAll();
+                    _groups[current].GetGroupStack().ShowGroup();
                 }
             }
         }
 
-        public int SearchGroup(ref int parent, ref int current, int addedElement)
-        {
-            if(!(IsEmpty()))
-            {
-                int current = 0;
-                do
-                {
-                    if (groupNumber == _groups[_groups[current].GetPNext()].GetGroupStack().GetGroupNumber())
-                    {
-                        return current;
-                    }
-                } while (current != 0);
-            }
-            return (int)Results.NotFound;
-        }
-
-        public int FindBigger(int addedGroupNumber)
-        {
-            int current = _groups[0].GetPNext();
-            while (current != 0)
-            {
-                if(addedGroupNumber > _groups[current].GetGroupStack().GetGroupNumber())
-                {
-                    current = _groups[current].GetPNext();
-                }
-                else if(addedGroupNumber <= _groups[current].GetGroupStack().GetGroupNumber())
-                {
-                    break;
-                }
-            }
-            return current;
-        }
+       
     }
 }
