@@ -92,7 +92,7 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void addGroup(Group group)
+        public void AddGroup(Group group)
         {
             int freeCell = _pHeedFree;
             _pHeedFree = _groups[freeCell].GetPNext();
