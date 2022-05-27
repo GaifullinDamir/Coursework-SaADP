@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Coursework_SaADP
+namespace Coursework.UI
 {
     class Program
     {
@@ -8,7 +8,7 @@ namespace Coursework_SaADP
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Application
         }
     }
 }

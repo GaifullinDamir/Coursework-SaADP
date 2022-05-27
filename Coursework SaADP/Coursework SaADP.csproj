@@ -6,9 +6,4 @@
     <RootNamespace>Coursework_SaADP</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="FacultyList\" />
-    <Folder Include="GroupStack\" />
-  </ItemGroup>
-
 </Project>

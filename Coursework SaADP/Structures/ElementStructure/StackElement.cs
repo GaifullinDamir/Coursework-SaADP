@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Coursework.Structures.FacultyStructure;
 
-namespace Coursework_SaADP
+namespace Coursework.Structures.ElementStructure
 {
     class StackElement
     {
