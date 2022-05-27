@@ -1,14 +1,15 @@
 ﻿using System;
+using Coursework.Structures.FacultyStructure;
 
 namespace Coursework.UI
 {
     class Program
     {
-        private int count;
-
         static void Main(string[] args)
         {
-            Application
+            Faculty faculty = new Faculty();
+            Application application = new Application();
+            application.AppCycle(faculty);
         }
     }
 }

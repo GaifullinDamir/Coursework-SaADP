@@ -67,7 +67,7 @@ namespace Coursework.Structures.FacultyStructure
             return false;
         }
 
-        public void ClearMemory()
+        public void StackClearMemory()
         {
             StackElement current = _pHead;
             StackElement temp;
@@ -77,6 +77,7 @@ namespace Coursework.Structures.FacultyStructure
                 current = null;
                 current = temp;
             }
+            _pHead = null;
         }
     }
 }

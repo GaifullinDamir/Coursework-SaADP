@@ -39,11 +39,15 @@ namespace Coursework.Structures.FacultyStructure
 
         public Faculty()
         {
-            _groups[0].SetGroupStack(null);
+            //Group group = new Group();
+            
+            //_groups[0].SetGroupStack(group);
             _groups[0].SetPNext(0);
             _pHeedFree = 1;
             for (int i = 0; i < _numberOfGroups; i++)
             {
+                Group group = new Group();
+                _groups[i].SetGroupStack(group);
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
             }
@@ -113,6 +117,7 @@ namespace Coursework.Structures.FacultyStructure
 
         public void DeleteGroup(int prevGroup, int currGroup)
         {
+            _groups[currGroup].GetGroupStack().StackClearMemory();
             _groups[prevGroup].SetPNext(_groups[currGroup].GetPNext());
             _groups[currGroup].SetPNext(_pHeedFree);
             _pHeedFree = currGroup;
@@ -133,6 +138,18 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-       
+        public void ListClearMemory()
+        {
+            int current = _groups[0].GetPNext();
+            while (current != 0)
+            {
+                _groups[current].GetGroupStack().StackClearMemory();
+            }
+            for (int groupNumber = 0; groupNumber < _numberOfGroups; groupNumber++)
+            {
+                _groups[groupNumber] = null;
+            }
+            _groups = null;
+        }
     }
 }
