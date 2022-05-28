@@ -59,7 +59,7 @@ namespace Coursework.UI
         public void AppCycle(Faculty faculty)
         {
             bool stop = false; ShowMenu();
-
+            bool facultyAvailable = false;
             while (!stop)
             {
                 switch ((Cases)InputInteger())
@@ -68,15 +68,16 @@ namespace Coursework.UI
                         ShowMenu(); break;
 
                     case Cases.AddFaculty:
-                        break;
+                        CaseAddFaculty(faculty, ref facultyAvailable); break;
 
                     case Cases.AddGroup:
-                        break;
+                        CaseAddGroup(faculty, facultyAvailable); break;
 
                     case Cases.AddStudent:
-                        break;
+                        CaseAddStudent(faculty); break;
 
                     case Cases.DeleteGroup:
+
                         break;
 
                     case Cases.DeleteStudent:
@@ -95,6 +96,7 @@ namespace Coursework.UI
                         break;
 
                     case Cases.ShowStructure:
+                        faculty.ShowFacultys();
                         break;
 
                     case Cases.Exit:
@@ -104,6 +106,78 @@ namespace Coursework.UI
 
                     default:
                         Console.WriteLine("Такого пункта меню нет."); break;
+                }
+            }
+        }
+        public void CaseAddFaculty(Faculty faculty, ref bool facultyAvailable)
+        {
+            if(!facultyAvailable)
+            {
+                Console.Write("Введите название факультета: "); string facultyName = Console.ReadLine();
+                faculty.SetFacultyName(facultyName);
+                facultyAvailable = true;
+            }
+            else Console.WriteLine("Факультет уже добавлен.");
+        }
+        public void CaseAddGroup(Faculty faculty, bool facultyAvailable)
+        {
+            if(!(faculty.IsFull()) && facultyAvailable)
+            {
+                Group group = new Group();
+                Console.Write("Введите номер группы: "); int groupNumber = InputInteger();
+                group.SetGroupNumber(groupNumber);
+                faculty.AddGroup(group);
+                return;
+            }
+            if(faculty.IsFull())
+            {
+                Console.WriteLine("Факультет заполнен! Не более 10 групп.");
+                return;
+            }
+            Console.WriteLine("Факультет не создан!");
+        }
+
+        public void CaseAddStudent(Faculty faculty)
+        {
+            if(!(faculty.IsEmpty()))
+            {
+                Console.Write("Введите номер группы в которую нужно добавить студента: "); int groupNumber = InputInteger();
+                bool check = false; int prevGroup = 0; int currGroup = 0;
+                faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
+                if(check)
+                {
+                    Group group = faculty.GetGroupStackFromFaculty(currGroup);
+                    Console.Write("Введите фамилия студента: ");string surname = Console.ReadLine();
+                    Console.Write("Введите год рождения студента: "); string dateOfBirth = Console.ReadLine();
+                    group.AddStudent(surname, dateOfBirth);
+                    Console.WriteLine("\nСтудент добавлен.");
+                }
+                else
+                {
+                    Console.WriteLine("Такой группы нет.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Добавьте факультет.");
+            }
+        }
+
+        public void CaseDeleteGroup(Faculty faculty)
+        {
+            if(!(faculty.IsEmpty()))
+            {
+                Console.Write("Введите номер группы которую нужно удалить: "); int groupNumber = InputInteger();
+                bool check = false; int prevGroup = 0; int currGroup = 0;
+                faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
+                if (check)
+                {
+                    faculty.DeleteGroup(prevGroup, currGroup);
+                    Console.WriteLine("Группа удалена.");
+                }
+                else
+                {
+                    Console.WriteLine("Такой группы нет.");
                 }
             }
         }

@@ -61,6 +61,7 @@ namespace Coursework.Structures.FacultyStructure
                 {
                     Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
                         $" год рождения: {current.GetStudent().GetDateOfBirht()}");
+                    current = current.GetPNext();
                 }
                 return true;
             }

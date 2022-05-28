@@ -37,6 +37,11 @@ namespace Coursework.Structures.FacultyStructure
             return _groupCounter;
         }
 
+        public Group GetGroupStackFromFaculty(int currGroup)
+        {
+            return _groups[currGroup].GetGroupStack();
+        }
+
         public Faculty()
         {
             _groups[0] = new StaticListElement();
@@ -78,24 +83,24 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void SearchGroup(ref int parent, ref int current, int searchedElement, ref bool check)
+        public void SearchGroup(ref int prevGroup, ref int currGroup, int searchedElement, ref bool check)
         {
-            parent = 0;
-            current = _groups[0].GetPNext();
-            while(current != 0)
+            prevGroup = 0;
+            currGroup = _groups[0].GetPNext();
+            while(currGroup != 0)
             {
-                if (_groups[current].GetGroupStack().GetGroupNumber() == searchedElement)
+                if (_groups[currGroup].GetGroupStack().GetGroupNumber() == searchedElement)
                 {
                     check = true;
                     break;
                 }
                 else check = false;
-                parent = current;
-                current = _groups[current].GetPNext();
+                prevGroup = currGroup;
+                currGroup = _groups[currGroup].GetPNext();
             }
         }
 
-        public void addGroup(Group group)
+        public void AddGroup(Group group)
         {
             int freeCell = _pHeedFree;
             _pHeedFree = _groups[freeCell].GetPNext();
@@ -104,6 +109,7 @@ namespace Coursework.Structures.FacultyStructure
             {
                 _groups[0].SetPNext(freeCell);
                 _groups[freeCell].SetPNext(0);
+                _groupCounter++;
                 return;
             }
             int prevGroup = 0; int currGroup = 0;
@@ -133,6 +139,7 @@ namespace Coursework.Structures.FacultyStructure
                 while (current != 0)
                 {
                     _groups[current].GetGroupStack().ShowGroup();
+                    current = _groups[current].GetPNext();
                 }
             }
         }
