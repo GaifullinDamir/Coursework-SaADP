@@ -1,5 +1,6 @@
 ﻿using System;
 using Coursework.Structures.FacultyStructure;
+using Coursework.XML;
 
 namespace Coursework.UI
 {
@@ -93,9 +94,11 @@ namespace Coursework.UI
                         break;
 
                     case Cases.SaveInXML:
+                        CaseUploadToXML();
                         break;
 
                     case Cases.DownloadFromXML:
+                        CaseDownloadFromXML();
                         break;
 
                     case Cases.ClearStructure:
@@ -103,7 +106,7 @@ namespace Coursework.UI
                         break;
 
                     case Cases.ShowStructure:
-                        _faculty.ShowFacultys();
+                        CaseShowStructure();
                         break;
                     case Cases.Exit:
                         CaseExit(ref stop);
@@ -119,10 +122,9 @@ namespace Coursework.UI
         {
             if(_faculty is null)
             {
-                _faculty = new Faculty();
                 Console.Write("Введите название факультета: "); 
                 string facultyName = Console.ReadLine();
-                _faculty.SetFacultyName(facultyName);
+                _faculty = new Faculty(facultyName);
                 Console.WriteLine("Факультет добавлен.");
                 return;
             }
@@ -135,11 +137,18 @@ namespace Coursework.UI
             {
                 if (!(_faculty.FacultyIsFull()))
                 {
-                    Group group = new Group();
                     Console.Write("Введите номер группы: "); int groupNumber = InputInteger();
-                    group.SetGroupNumber(groupNumber);
-                    _faculty.AddGroup(group);
-                    Console.WriteLine("Группа добавлена.");
+                    bool check = false;
+                    _faculty.SearchGroup(groupNumber, ref check);
+                    if (check)
+                    {
+                        Console.WriteLine("Такая группа уже есть в факультете."); return;
+                    }
+                    else
+                    {
+                        _faculty.AddGroup(groupNumber);
+                        Console.WriteLine("Группа добавлена.");
+                    }
                     return;
                 }
                 else if (_faculty.FacultyIsFull()) 
@@ -160,7 +169,7 @@ namespace Coursework.UI
                     _faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
                     if (check)
                     {
-                        Group group = _faculty.GetGroupStackFromFaculty(currGroup);
+                        Group group = _faculty.GetGroup(currGroup);
                         Console.Write("Введите фамилия студента: "); string surname = Console.ReadLine();
                         Console.Write("Введите год рождения студента: "); int yearOfBirth = InputInteger();
                         group.AddStudent(surname, yearOfBirth);
@@ -204,7 +213,7 @@ namespace Coursework.UI
                     _faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
                     if (check)
                     {
-                        _faculty.GetGroupStackFromFaculty(currGroup).DeleteStudent();
+                        _faculty.GetGroup(currGroup).DeleteStudent();
                         Console.WriteLine("Студент удален.");
                     }
                     else
@@ -225,7 +234,7 @@ namespace Coursework.UI
                 if (check)
                 {
                     Console.WriteLine("Группа найдена.");
-                    _faculty.GetGroupStackFromFaculty(currGroup).ShowGroup();
+                    _faculty.GetGroup(currGroup).ShowGroup();
                 }
                 else
                     Console.WriteLine("Такой группы нет.");
@@ -234,6 +243,30 @@ namespace Coursework.UI
                 Console.WriteLine("Добавьте факультет.");
         }
 
+        public void CaseUploadToXML()
+        {
+            if(!(_faculty is null))
+            {
+                XMLwork xmlWork = new XMLwork();
+                Console.WriteLine("Введите путь к файлу: "); string filePath = Console.ReadLine();
+                bool check = xmlWork.UploadFaculty(filePath, _faculty);
+                if (check) { Console.WriteLine("Данные факультета выгружены в XML-файл."); }
+            }
+            else
+                Console.WriteLine("Данные о факультете отсутствуют.");
+        }
+        public void CaseDownloadFromXML()
+        {
+            if(_faculty is null)
+            {
+                XMLwork xmlWork = new XMLwork();
+                Console.WriteLine("Введите путь к файлу: "); string filePath = Console.ReadLine();
+                bool check = xmlWork.DownloadFaculty(filePath, ref _faculty);
+                if (check){ Console.WriteLine("Факультет загружен и добавлен."); }
+            }
+            else
+                Console.WriteLine("Факультет уже добавлен.");
+        }
         public void CaseClearStructure()
         {
             if(!(_faculty is null))
@@ -247,6 +280,13 @@ namespace Coursework.UI
             
         }
 
+        public void CaseShowStructure()
+        {
+            if(!(_faculty is null))
+            {
+                _faculty.ShowFacultys();
+            }
+        }
         public void CaseExit(ref bool stop)
         {
             stop = true;

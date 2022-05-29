@@ -38,21 +38,27 @@ namespace Coursework.Structures.FacultyStructure
             return _groupCounter;
         }
 
-        public Group GetGroupStackFromFaculty(int currGroup)
+        public StaticListElement[] GetGroupsArray()
+        {
+            return _groups;
+        }
+
+        public Group GetGroup(int currGroup)
         {
             return _groups[currGroup].GetGroupStack();
         }
 
         #endregion
-        public Faculty()
+        public Faculty(string facultyName)
         {
+            _facultyName = facultyName;
             _groups[0] = new StaticListElement();
             _groups[0].SetPNext(0);
             _pHeedFree = 1;
             for (int i = 1; i < _numberOfGroups; i++)
             {
                 _groups[i] = new StaticListElement();
-                Group group = new Group();
+                Group group = new Group(-1);
                 _groups[i].SetGroupStack(group);
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
@@ -99,6 +105,20 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
+        public void SearchGroup(int searchedElement, ref bool check)
+        {
+            int currGroup = _groups[0].GetPNext();
+            while (currGroup != 0)
+            {
+                if (_groups[currGroup].GetGroupStack().GetGroupNumber() == searchedElement)
+                {
+                    check = true;
+                    break;
+                }
+                else check = false;
+                currGroup = _groups[currGroup].GetPNext();
+            }
+        }
         public void AddGroup(Group group)
         {
             int freeCell = _pHeedFree;
@@ -117,6 +137,12 @@ namespace Coursework.Structures.FacultyStructure
             int pNext = currGroup == 0 ? 0 : currGroup;
             _groups[freeCell].SetPNext(pNext);
             _groupCounter++;
+        }
+
+        public void AddGroup(int groupNumber)
+        {
+            Group group = new Group(groupNumber);
+            AddGroup(group);
         }
 
         public void DeleteGroup(int prevGroup, int currGroup)

@@ -9,7 +9,7 @@ namespace Coursework.Structures.FacultyStructure
         private StackElement _pHead;
 
         #region Get/set methods
-        public StackElement GetHead()
+        public StackElement GetPHead()
         {
             return _pHead;
         }
@@ -24,11 +24,12 @@ namespace Coursework.Structures.FacultyStructure
             return _groupNumber;
         }
         #endregion
-        public Group()
+        public Group(int groupNumber)
         {
-            _groupNumber = 0; 
+            _groupNumber = groupNumber; 
             _pHead = null;
         }
+
         #region Class methods
         public bool GroupIsEmpty()
         {
@@ -37,8 +38,14 @@ namespace Coursework.Structures.FacultyStructure
 
         public void AddStudent(string surname, int yearOfBirth)
         {
-            StackElement newElement = new StackElement(surname, yearOfBirth, _pHead);
-            _pHead = newElement;
+            Student student = new Student(surname, yearOfBirth);
+            AddStudent(student);
+        }
+
+        private void AddStudent(Student student)
+        {
+            StackElement stackElement = new StackElement(student, _pHead);
+            _pHead = stackElement;
         }
 
         public bool DeleteStudent()
@@ -62,7 +69,7 @@ namespace Coursework.Structures.FacultyStructure
                 while (current != null)
                 {
                     Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
-                        $" год рождения: {current.GetStudent().GetDateOfBirht()}");
+                        $" год рождения: {current.GetStudent().GetDateOfBirth()}");
                     current = current.GetPNext();
                 }
                 return true;
