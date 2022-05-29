@@ -1,5 +1,6 @@
 ﻿using System;
 using Coursework.Structures.FacultyStructure;
+using Coursework.XML;
 
 namespace Coursework.UI
 {
@@ -96,6 +97,7 @@ namespace Coursework.UI
                         break;
 
                     case Cases.DownloadFromXML:
+                        CaseDownloadFromXML();
                         break;
 
                     case Cases.ClearStructure:
@@ -103,7 +105,7 @@ namespace Coursework.UI
                         break;
 
                     case Cases.ShowStructure:
-                        _faculty.ShowFacultys();
+                        CaseShowStructure();
                         break;
                     case Cases.Exit:
                         CaseExit(ref stop);
@@ -231,6 +233,18 @@ namespace Coursework.UI
                 Console.WriteLine("Добавьте факультет.");
         }
 
+        public void CaseDownloadFromXML()
+        {
+            if(_faculty is null)
+            {
+                XMLwork xmlWork = new XMLwork();
+                Console.WriteLine("Введите путь к файлу: "); string filePath = Console.ReadLine();
+                bool check = xmlWork.DownloadFaculty(filePath, ref _faculty);
+                if (check){ Console.WriteLine("Факультет загружен и добавлен."); }
+            }
+            else
+                Console.WriteLine("Факультет уже добавлен.");
+        }
         public void CaseClearStructure()
         {
             if(!(_faculty is null))
@@ -244,6 +258,13 @@ namespace Coursework.UI
             
         }
 
+        public void CaseShowStructure()
+        {
+            if(!(_faculty is null))
+            {
+                _faculty.ShowFacultys();
+            }
+        }
         public void CaseExit(ref bool stop)
         {
             stop = true;

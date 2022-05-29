@@ -6,5 +6,52 @@
 			<surname>Гайфуллин</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
+		<student>
+			<surname>Кириллов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Потапов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Шлеменко</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Августинов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Устинов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Королев</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	
+	<group groupNumber = "4500">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Антипов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Филиппов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Дажунц</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Оксфордский</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
 	</group>
 </faculty>

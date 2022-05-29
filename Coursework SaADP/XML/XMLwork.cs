@@ -2,27 +2,26 @@
 using System.Xml;
 using Coursework.Structures.FacultyStructure;
 
-namespace Coursework_SaADP.XMLwork
+namespace Coursework.XML
 {
     class XMLwork
     {
-        public Faculty DownloadFaculty(string filePath)
+        public bool DownloadFaculty(string filePath, ref Faculty faculty)
         {
             try
             {
                 XmlDocument xDoc = new XmlDocument();
                 xDoc.Load(filePath);
-
                 XmlElement xRoot = xDoc.DocumentElement;
-
                 string facultyName = xRoot.GetAttribute("facultyName").ToString();
-                Faculty faculty = new Faculty(facultyName);
+                faculty = new Faculty(facultyName);
                 if (xRoot != null)
                 {
                     foreach (XmlElement xnode in xRoot)
                     {
                         int groupNumber = int.Parse(xnode.Attributes.GetNamedItem("groupNumber").Value);
-                        faculty.AddGroup(groupNumber);
+                        Group group = new Group(groupNumber);
+                        faculty.AddGroup(group);
                         foreach (XmlNode childnode in xnode.ChildNodes)
                         {
                             string surname = null;
@@ -40,17 +39,17 @@ namespace Coursework_SaADP.XMLwork
                                     yearOfBirth = ch.InnerText;
                                 }
                             }
-                            faculty.GetGroup(groupNumber).AddStudent(surname, Convert.ToInt32(yearOfBirth));
+                            group.AddStudent(surname, Convert.ToInt32(yearOfBirth));
                         }
                     }
                 }
-                return faculty;
+                return true;
             }
             catch (Exception)
             {
-                Console.WriteLine("Возникла ошибка при загрузке данных.");
+                Console.WriteLine("Указан неверный адрес, либо отсутствует файл.");
+                return false;
             }
-
             
         }
     }

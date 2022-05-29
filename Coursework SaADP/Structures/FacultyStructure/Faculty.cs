@@ -99,7 +99,22 @@ namespace Coursework.Structures.FacultyStructure
                 currGroup = _groups[currGroup].GetPNext();
             }
         }
-        private void AddGroup(Group group)
+
+        public void SearchGroup(ref int currGroup, int searchedElement, ref bool check)
+        {
+            currGroup = _groups[0].GetPNext();
+            while (currGroup != 0)
+            {
+                if (_groups[currGroup].GetGroupStack().GetGroupNumber() == searchedElement)
+                {
+                    check = true;
+                    break;
+                }
+                else check = false;
+                currGroup = _groups[currGroup].GetPNext();
+            }
+        }
+        public void AddGroup(Group group)
         {
             int freeCell = _pHeedFree;
             _pHeedFree = _groups[freeCell].GetPNext();
