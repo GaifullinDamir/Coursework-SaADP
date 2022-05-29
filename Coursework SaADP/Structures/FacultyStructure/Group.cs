@@ -9,7 +9,7 @@ namespace Coursework.Structures.FacultyStructure
         private StackElement _pHead;
 
         #region Get/set methods
-        public StackElement GetHead()
+        public StackElement GetPHead()
         {
             return _pHead;
         }
@@ -69,7 +69,7 @@ namespace Coursework.Structures.FacultyStructure
                 while (current != null)
                 {
                     Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
-                        $" год рождения: {current.GetStudent().GetDateOfBirht()}");
+                        $" год рождения: {current.GetStudent().GetDateOfBirth()}");
                     current = current.GetPNext();
                 }
                 return true;

@@ -22,7 +22,7 @@ namespace Coursework.Structures.FacultyStructure
             _yearOfBirth = yearOfBirth;
         }
 
-        public int GetDateOfBirht()
+        public int GetDateOfBirth()
         {
             return _yearOfBirth;
         }

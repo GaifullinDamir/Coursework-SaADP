@@ -38,6 +38,11 @@ namespace Coursework.Structures.FacultyStructure
             return _groupCounter;
         }
 
+        public StaticListElement[] GetGroupsArray()
+        {
+            return _groups;
+        }
+
         public Group GetGroup(int currGroup)
         {
             return _groups[currGroup].GetGroupStack();
@@ -100,9 +105,9 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void SearchGroup(ref int currGroup, int searchedElement, ref bool check)
+        public void SearchGroup(int searchedElement, ref bool check)
         {
-            currGroup = _groups[0].GetPNext();
+            int currGroup = _groups[0].GetPNext();
             while (currGroup != 0)
             {
                 if (_groups[currGroup].GetGroupStack().GetGroupNumber() == searchedElement)

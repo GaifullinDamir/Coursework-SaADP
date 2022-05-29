@@ -54,4 +54,58 @@
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 	</group>
+	<group groupNumber = "4567">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "4210">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "451">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "4520">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "43">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "4125">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "4125">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "45122">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
+	<group groupNumber = "77777">
+		<student>
+			<surname>Перепелкин</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+	</group>
 </faculty>

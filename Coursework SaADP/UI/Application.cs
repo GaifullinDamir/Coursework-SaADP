@@ -94,6 +94,7 @@ namespace Coursework.UI
                         break;
 
                     case Cases.SaveInXML:
+                        CaseUploadToXML();
                         break;
 
                     case Cases.DownloadFromXML:
@@ -137,8 +138,17 @@ namespace Coursework.UI
                 if (!(_faculty.FacultyIsFull()))
                 {
                     Console.Write("Введите номер группы: "); int groupNumber = InputInteger();
-                    _faculty.AddGroup(groupNumber);
-                    Console.WriteLine("Группа добавлена.");
+                    bool check = false;
+                    _faculty.SearchGroup(groupNumber, ref check);
+                    if (check)
+                    {
+                        Console.WriteLine("Такая группа уже есть в факультете."); return;
+                    }
+                    else
+                    {
+                        _faculty.AddGroup(groupNumber);
+                        Console.WriteLine("Группа добавлена.");
+                    }
                     return;
                 }
                 else if (_faculty.FacultyIsFull()) 
@@ -233,6 +243,18 @@ namespace Coursework.UI
                 Console.WriteLine("Добавьте факультет.");
         }
 
+        public void CaseUploadToXML()
+        {
+            if(!(_faculty is null))
+            {
+                XMLwork xmlWork = new XMLwork();
+                Console.WriteLine("Введите путь к файлу: "); string filePath = Console.ReadLine();
+                bool check = xmlWork.UploadFaculty(filePath, _faculty);
+                if (check) { Console.WriteLine("Данные факультета выгружены в XML-файл."); }
+            }
+            else
+                Console.WriteLine("Данные о факультете отсутствуют.");
+        }
         public void CaseDownloadFromXML()
         {
             if(_faculty is null)
