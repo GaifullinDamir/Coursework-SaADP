@@ -28,9 +28,9 @@ namespace Coursework.Structures.ElementStructure
             return _pNext;
         }
 
-        public StackElement(string surname, string dateOfBirth, StackElement pNext)
+        public StackElement(string surname, int yearOfBirth, StackElement pNext)
         {
-            _student = new Student(surname, dateOfBirth);
+            _student = new Student(surname, yearOfBirth);
             _pNext = pNext;
         }
     }

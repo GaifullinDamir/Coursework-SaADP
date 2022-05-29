@@ -7,7 +7,7 @@ namespace Coursework.Structures.FacultyStructure
     {
         private string _facultyName;
         private const int _numberOfGroups = 10;
-        private int _groupCounter = 0;
+        private int _groupCounter = 1;
         private int _pHeedFree;
 
         private StaticListElement[] _groups = new StaticListElement[_numberOfGroups];
@@ -37,13 +37,21 @@ namespace Coursework.Structures.FacultyStructure
             return _groupCounter;
         }
 
+        public Group GetGroupStackFromFaculty(int currGroup)
+        {
+            return _groups[currGroup].GetGroupStack();
+        }
+
         public Faculty()
         {
-            _groups[0].SetGroupStack(null);
+            _groups[0] = new StaticListElement();
             _groups[0].SetPNext(0);
             _pHeedFree = 1;
-            for (int i = 0; i < _numberOfGroups; i++)
+            for (int i = 1; i < _numberOfGroups; i++)
             {
+                _groups[i] = new StaticListElement();
+                Group group = new Group();
+                _groups[i].SetGroupStack(group);
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
             }
@@ -75,20 +83,20 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void SearchGroup(ref int parent, ref int current, int searchedElement, ref bool check)
+        public void SearchGroup(ref int prevGroup, ref int currGroup, int searchedElement, ref bool check)
         {
-            parent = 0;
-            current = _groups[0].GetPNext();
-            while(current != 0)
+            prevGroup = 0;
+            currGroup = _groups[0].GetPNext();
+            while(currGroup != 0)
             {
-                if (_groups[current].GetGroupStack().GetGroupNumber() == searchedElement)
+                if (_groups[currGroup].GetGroupStack().GetGroupNumber() == searchedElement)
                 {
                     check = true;
                     break;
                 }
                 else check = false;
-                parent = current;
-                current = _groups[current].GetPNext();
+                prevGroup = currGroup;
+                currGroup = _groups[currGroup].GetPNext();
             }
         }
 
@@ -101,6 +109,7 @@ namespace Coursework.Structures.FacultyStructure
             {
                 _groups[0].SetPNext(freeCell);
                 _groups[freeCell].SetPNext(0);
+                _groupCounter++;
                 return;
             }
             int prevGroup = 0; int currGroup = 0;
@@ -113,6 +122,7 @@ namespace Coursework.Structures.FacultyStructure
 
         public void DeleteGroup(int prevGroup, int currGroup)
         {
+            _groups[currGroup].GetGroupStack().StackClearMemory();
             _groups[prevGroup].SetPNext(_groups[currGroup].GetPNext());
             _groups[currGroup].SetPNext(_pHeedFree);
             _pHeedFree = currGroup;
@@ -129,10 +139,25 @@ namespace Coursework.Structures.FacultyStructure
                 while (current != 0)
                 {
                     _groups[current].GetGroupStack().ShowGroup();
+                    current = _groups[current].GetPNext();
                 }
             }
         }
 
-       
+        public void ListClearMemory()
+        {
+            int current = _groups[0].GetPNext();
+            while (current != 0)
+            {
+                _groups[current].GetGroupStack().StackClearMemory();
+                current = _groups[current].GetPNext();
+            }
+            for (int i = 0; i < _numberOfGroups; i++)
+            {
+                _groups[i] = null;
+            }
+            _groups = null;
+
+        }
     }
 }
