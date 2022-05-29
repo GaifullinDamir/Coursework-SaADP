@@ -7,7 +7,7 @@ namespace Coursework.Structures.FacultyStructure
     {
         private string _facultyName;
         private const int _numberOfGroups = 10;
-        private int _groupCounter = 0;
+        private int _groupCounter = 1;
         private int _pHeedFree;
 
         private StaticListElement[] _groups = new StaticListElement[_numberOfGroups];
@@ -144,18 +144,24 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void ListClearMemory()
+        public void ListClearMemory(bool clearAll)
         {
+            _facultyName = null;
+            _groupCounter = 1;
             int current = _groups[0].GetPNext();
             while (current != 0)
             {
                 _groups[current].GetGroupStack().StackClearMemory();
+                current = _groups[current].GetPNext();
             }
-            for (int i = 0; i < _numberOfGroups; i++)
+            if(clearAll)
             {
-                _groups[i] = null;
+                for (int i = 0; i < _numberOfGroups; i++)
+                {
+                    _groups[i] = null;
+                }
+                _groups = null;
             }
-            _groups = null;
         }
     }
 }

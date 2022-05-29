@@ -77,14 +77,13 @@ namespace Coursework.UI
                         CaseAddStudent(faculty); break;
 
                     case Cases.DeleteGroup:
-
-                        break;
+                        CaseDeleteGroup(faculty); break;
 
                     case Cases.DeleteStudent:
-                        break;
+                        CaseDeleteStudent(faculty); break;
 
                     case Cases.SearchGroup:
-                        break;
+                        CaseSearchGroup(faculty); break;
 
                     case Cases.SaveInXML:
                         break;
@@ -93,16 +92,14 @@ namespace Coursework.UI
                         break;
 
                     case Cases.ClearStructure:
-                        break;
+                        CaseClearStructure(faculty, ref facultyAvailable); break;
 
                     case Cases.ShowStructure:
                         faculty.ShowFacultys();
                         break;
 
                     case Cases.Exit:
-                        stop = true;
-                        faculty.ListClearMemory();
-                        break;
+                        CaseExit(faculty, ref stop);  break;
 
                     default:
                         Console.WriteLine("Такого пункта меню нет."); break;
@@ -180,6 +177,71 @@ namespace Coursework.UI
                     Console.WriteLine("Такой группы нет.");
                 }
             }
+            else
+            {
+                Console.WriteLine("Добавьте факультет.");
+            }
+        }
+
+        public void CaseDeleteStudent(Faculty faculty)
+        {
+            if (!(faculty.IsEmpty()))
+            {
+                Console.Write("Введите номер группы из которой нужно удалить студента: "); int groupNumber = InputInteger();
+                bool check = false; int prevGroup = 0; int currGroup = 0;
+                faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
+                if (check)
+                {
+                    faculty.GetGroupStackFromFaculty(currGroup).DeleteStudent();
+                    Console.WriteLine("Студент удален.");
+                }
+                else
+                {
+                    Console.WriteLine("Такой группы нет.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Добавьте факультет.");
+            }
+
+        }
+
+        public void CaseSearchGroup(Faculty faculty)
+        {
+            if (!(faculty.IsEmpty()))
+            {
+                Console.Write("Введите номер группы : "); int groupNumber = InputInteger();
+                bool check = false; int prevGroup = 0; int currGroup = 0;
+                faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
+                if (check)
+                {
+                    Console.WriteLine("Группа найдена.");
+                    faculty.GetGroupStackFromFaculty(currGroup).ShowGroup();
+                }
+                else
+                {
+                    Console.WriteLine("Такой группы нет.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Добавьте факультет.");
+            }
+        }
+
+        public void CaseClearStructure(Faculty faculty, ref bool facultyAvailable)
+        {
+            faculty.ListClearMemory(false);
+            facultyAvailable = false;
+            Console.WriteLine("Структура очищена.");
+        }
+
+        public void CaseExit(Faculty faculty, ref bool stop)
+        {
+            stop = true;
+            faculty.ListClearMemory(true);
+            faculty = null;
         }
     }
 }
