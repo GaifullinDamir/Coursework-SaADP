@@ -7,7 +7,6 @@ namespace Coursework.UI
     {
         static void Main(string[] args)
         {
-            //Faculty faculty /*= new Faculty()*/;
             Application application = new Application();
             application.AppCycle();
         }

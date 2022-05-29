@@ -7,7 +7,8 @@ namespace Coursework.Structures.FacultyStructure
     {
         private int _groupNumber;
         private StackElement _pHead;
-        
+
+        #region Get/set methods
         public StackElement GetHead()
         {
             return _pHead;
@@ -22,13 +23,14 @@ namespace Coursework.Structures.FacultyStructure
         {
             return _groupNumber;
         }
+        #endregion
         public Group()
         {
             _groupNumber = 0; 
             _pHead = null;
         }
-
-        public bool IsEmpty()
+        #region Class methods
+        public bool GroupIsEmpty()
         {
             return (_pHead is null);
         }
@@ -41,7 +43,7 @@ namespace Coursework.Structures.FacultyStructure
 
         public bool DeleteStudent()
         {
-            if(!(IsEmpty()))
+            if(!(GroupIsEmpty()))
             {
                 StackElement current = _pHead;
                 _pHead = _pHead.GetPNext();
@@ -53,7 +55,7 @@ namespace Coursework.Structures.FacultyStructure
 
         public bool ShowGroup()
         {
-            if(!(IsEmpty()))
+            if(!(GroupIsEmpty()))
             {
                 StackElement current = _pHead;
                 Console.WriteLine($" Группа №{_groupNumber}");
@@ -80,5 +82,6 @@ namespace Coursework.Structures.FacultyStructure
             }
             _pHead = null;
         }
+        #endregion
     }
 }

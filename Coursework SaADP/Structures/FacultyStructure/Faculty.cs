@@ -6,12 +6,13 @@ namespace Coursework.Structures.FacultyStructure
     class Faculty
     {
         private string _facultyName;
-        private const int _numberOfGroups = 10;
-        private int _groupCounter = 1;
+        private const int _numberOfGroups = 11;
+        private int _groupCounter;
         private int _pHeedFree;
 
         private StaticListElement[] _groups = new StaticListElement[_numberOfGroups];
 
+        #region Get/set methods
         public void SetFacultyName(string facultyName)
         {
             _facultyName = facultyName;
@@ -42,6 +43,7 @@ namespace Coursework.Structures.FacultyStructure
             return _groups[currGroup].GetGroupStack();
         }
 
+        #endregion
         public Faculty()
         {
             _groups[0] = new StaticListElement();
@@ -55,17 +57,17 @@ namespace Coursework.Structures.FacultyStructure
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
             }
-            _groupCounter = 1;
+            _groupCounter = 0;
+        }
+        #region Class methods
+        public bool FacultyIsFull()
+        {
+            return (_groupCounter + 1 == _numberOfGroups);
         }
 
-        public bool IsFull()
+        public bool FacultyIsEmpty()
         {
-            return (_groupCounter == _numberOfGroups);
-        }
-
-        public bool IsEmpty()
-        {
-            return (_groupCounter - 1 == 0);
+            return (_groupCounter == 0);
         }
 
         public void FindBigger(ref int parent, ref int current, int addedElement)
@@ -74,10 +76,7 @@ namespace Coursework.Structures.FacultyStructure
             current = _groups[0].GetPNext();
             while (current != 0)
             {
-                if(_groups[current].GetGroupStack().GetGroupNumber() >= addedElement)
-                {
-                    break;
-                }
+                if(_groups[current].GetGroupStack().GetGroupNumber() >= addedElement) { break;}
                 parent = current;
                 current = _groups[current].GetPNext();
             }
@@ -105,7 +104,7 @@ namespace Coursework.Structures.FacultyStructure
             int freeCell = _pHeedFree;
             _pHeedFree = _groups[freeCell].GetPNext();
             _groups[freeCell].SetGroupStack(group);
-            if (IsEmpty())
+            if (FacultyIsEmpty())
             {
                 _groups[0].SetPNext(freeCell);
                 _groups[freeCell].SetPNext(0);
@@ -129,10 +128,9 @@ namespace Coursework.Structures.FacultyStructure
             _groupCounter--;
         }
 
-
         public void ShowFacultys()
         {
-            if (!(IsEmpty()))
+            if (!(FacultyIsEmpty()))
             {
                 Console.WriteLine($"Название факультета: {_facultyName}");
                 int current = _groups[0].GetPNext();
@@ -157,7 +155,7 @@ namespace Coursework.Structures.FacultyStructure
                 _groups[i] = null;
             }
             _groups = null;
-
         }
+        #endregion
     }
 }

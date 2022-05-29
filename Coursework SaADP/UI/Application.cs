@@ -21,7 +21,7 @@ namespace Coursework.UI
     class Application
     {
         private Faculty _faculty;
-        public void ShowMenu()
+        public void CaseShowMenu()
         {
             Console.WriteLine(
                 "1. Добавить факультет.\n"
@@ -58,31 +58,39 @@ namespace Coursework.UI
         }
         public void AppCycle()
         {
-            bool stop = false; ShowMenu();
+            bool stop = false; 
+            CaseShowMenu();
             while (!stop)
             {
                 switch ((Cases)InputInteger())
                 {
                     case Cases.Menu:
-                        ShowMenu(); break;
+                        CaseShowMenu();
+                        break;
 
                     case Cases.AddFaculty:
-                        CaseAddFaculty(); break;
+                        CaseAddFaculty();
+                        break;
 
                     case Cases.AddGroup:
-                        CaseAddGroup(); break;
+                        CaseAddGroup();
+                        break;
 
                     case Cases.AddStudent:
-                        CaseAddStudent(); break;
+                        CaseAddStudent();
+                        break;
 
                     case Cases.DeleteGroup:
-                        CaseDeleteGroup(); break;
+                        CaseDeleteGroup();
+                        break;
 
                     case Cases.DeleteStudent:
-                        CaseDeleteStudent(); break;
+                        CaseDeleteStudent();
+                        break;
 
                     case Cases.SearchGroup:
-                        CaseSearchGroup(); break;
+                        CaseSearchGroup();
+                        break;
 
                     case Cases.SaveInXML:
                         break;
@@ -91,13 +99,15 @@ namespace Coursework.UI
                         break;
 
                     case Cases.ClearStructure:
-                        CaseClearStructure(); break;
+                        CaseClearStructure();
+                        break;
 
                     case Cases.ShowStructure:
-                        _faculty.ShowFacultys(); break;
+                        _faculty.ShowFacultys();
+                        break;
                     case Cases.Exit:
-                        CaseExit(ref stop);  break;
-
+                        CaseExit(ref stop);
+                        break;
                     default:
                         break;
                 }
@@ -110,18 +120,20 @@ namespace Coursework.UI
             if(_faculty is null)
             {
                 _faculty = new Faculty();
-                Console.Write("Введите название факультета: "); string facultyName = Console.ReadLine();
+                Console.Write("Введите название факультета: "); 
+                string facultyName = Console.ReadLine();
                 _faculty.SetFacultyName(facultyName);
                 Console.WriteLine("Факультет добавлен.");
+                return;
             }
-            else 
+            else
                 Console.WriteLine("Факультет уже добавлен.");
         }
         public void CaseAddGroup()
         {
             if (!(_faculty is null))
             {
-                if (!(_faculty.IsFull()))
+                if (!(_faculty.FacultyIsFull()))
                 {
                     Group group = new Group();
                     Console.Write("Введите номер группы: "); int groupNumber = InputInteger();
@@ -130,7 +142,7 @@ namespace Coursework.UI
                     Console.WriteLine("Группа добавлена.");
                     return;
                 }
-                else if (_faculty.IsFull()) 
+                else if (_faculty.FacultyIsFull()) 
                     Console.WriteLine("Факультет заполнен! Не более 10 групп.");
             }
             else 
@@ -141,7 +153,7 @@ namespace Coursework.UI
         {
             if(!(_faculty is null))
             {
-                if (!(_faculty.IsEmpty()))
+                if (!(_faculty.FacultyIsEmpty()))
                 {
                     Console.Write("Введите номер группы в которую нужно добавить студента: "); int groupNumber = InputInteger();
                     bool check = false; int prevGroup = 0; int currGroup = 0;
@@ -164,7 +176,7 @@ namespace Coursework.UI
 
         public void CaseDeleteGroup()
         {
-            if(!(_faculty.IsEmpty()))
+            if(!(_faculty.FacultyIsEmpty()))
             {
                 Console.Write("Введите номер группы которую нужно удалить: "); int groupNumber = InputInteger();
                 bool check = false; int prevGroup = 0; int currGroup = 0;
@@ -185,7 +197,7 @@ namespace Coursework.UI
         {
             if(!(_faculty is null))
             {
-                if (!(_faculty.IsEmpty()))
+                if (!(_faculty.FacultyIsEmpty()))
                 {
                     Console.Write("Введите номер группы из которой нужно удалить студента: "); int groupNumber = InputInteger();
                     bool check = false; int prevGroup = 0; int currGroup = 0;
@@ -205,7 +217,7 @@ namespace Coursework.UI
 
         public void CaseSearchGroup()
         {
-            if (!(_faculty.IsEmpty()))
+            if (!(_faculty.FacultyIsEmpty()))
             {
                 Console.Write("Введите номер группы : "); int groupNumber = InputInteger();
                 bool check = false; int prevGroup = 0; int currGroup = 0;
