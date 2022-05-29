@@ -135,8 +135,7 @@ namespace Coursework.UI
                 if (!(_faculty.FacultyIsFull()))
                 {
                     Console.Write("Введите номер группы: "); int groupNumber = InputInteger();
-                    Group group = new Group(groupNumber);
-                    _faculty.AddGroup(group);
+                    _faculty.AddGroup(groupNumber);
                     Console.WriteLine("Группа добавлена.");
                     return;
                 }
@@ -158,7 +157,7 @@ namespace Coursework.UI
                     _faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
                     if (check)
                     {
-                        Group group = _faculty.GetGroupStackFromFaculty(currGroup);
+                        Group group = _faculty.GetGroup(currGroup);
                         Console.Write("Введите фамилия студента: "); string surname = Console.ReadLine();
                         Console.Write("Введите год рождения студента: "); int yearOfBirth = InputInteger();
                         group.AddStudent(surname, yearOfBirth);
@@ -202,7 +201,7 @@ namespace Coursework.UI
                     _faculty.SearchGroup(ref prevGroup, ref currGroup, groupNumber, ref check);
                     if (check)
                     {
-                        _faculty.GetGroupStackFromFaculty(currGroup).DeleteStudent();
+                        _faculty.GetGroup(currGroup).DeleteStudent();
                         Console.WriteLine("Студент удален.");
                     }
                     else
@@ -223,7 +222,7 @@ namespace Coursework.UI
                 if (check)
                 {
                     Console.WriteLine("Группа найдена.");
-                    _faculty.GetGroupStackFromFaculty(currGroup).ShowGroup();
+                    _faculty.GetGroup(currGroup).ShowGroup();
                 }
                 else
                     Console.WriteLine("Такой группы нет.");

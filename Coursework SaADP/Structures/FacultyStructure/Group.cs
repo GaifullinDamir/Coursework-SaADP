@@ -38,8 +38,14 @@ namespace Coursework.Structures.FacultyStructure
 
         public void AddStudent(string surname, int yearOfBirth)
         {
-            StackElement newElement = new StackElement(surname, yearOfBirth, _pHead);
-            _pHead = newElement;
+            Student student = new Student(surname, yearOfBirth);
+            AddStudent(student);
+        }
+
+        private void AddStudent(Student student)
+        {
+            StackElement stackElement = new StackElement(student, _pHead);
+            _pHead = stackElement;
         }
 
         public bool DeleteStudent()

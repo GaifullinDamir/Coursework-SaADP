@@ -38,7 +38,7 @@ namespace Coursework.Structures.FacultyStructure
             return _groupCounter;
         }
 
-        public Group GetGroupStackFromFaculty(int currGroup)
+        public Group GetGroup(int currGroup)
         {
             return _groups[currGroup].GetGroupStack();
         }
@@ -53,7 +53,7 @@ namespace Coursework.Structures.FacultyStructure
             for (int i = 1; i < _numberOfGroups; i++)
             {
                 _groups[i] = new StaticListElement();
-                Group group = new Group();
+                Group group = new Group(-1);
                 _groups[i].SetGroupStack(group);
                 int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
@@ -99,8 +99,7 @@ namespace Coursework.Structures.FacultyStructure
                 currGroup = _groups[currGroup].GetPNext();
             }
         }
-
-        public void AddGroup(Group group)
+        private void AddGroup(Group group)
         {
             int freeCell = _pHeedFree;
             _pHeedFree = _groups[freeCell].GetPNext();
@@ -118,6 +117,12 @@ namespace Coursework.Structures.FacultyStructure
             int pNext = currGroup == 0 ? 0 : currGroup;
             _groups[freeCell].SetPNext(pNext);
             _groupCounter++;
+        }
+
+        public void AddGroup(int groupNumber)
+        {
+            Group group = new Group(groupNumber);
+            AddGroup(group);
         }
 
         public void DeleteGroup(int prevGroup, int currGroup)

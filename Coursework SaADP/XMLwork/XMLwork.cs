@@ -6,7 +6,7 @@ namespace Coursework_SaADP.XMLwork
 {
     class XMLwork
     {
-        public void DownloadFaculty(string filePath)
+        public Faculty DownloadFaculty(string filePath)
         {
             try
             {
@@ -22,9 +22,7 @@ namespace Coursework_SaADP.XMLwork
                     foreach (XmlElement xnode in xRoot)
                     {
                         int groupNumber = int.Parse(xnode.Attributes.GetNamedItem("groupNumber").Value);
-                        Group group = new Group(groupNumber);
-                        faculty.AddGroup(group);
-
+                        faculty.AddGroup(groupNumber);
                         foreach (XmlNode childnode in xnode.ChildNodes)
                         {
                             string surname = null;
@@ -42,18 +40,17 @@ namespace Coursework_SaADP.XMLwork
                                     yearOfBirth = ch.InnerText;
                                 }
                             }
-
-                            Student student = new Student(surname, Convert.ToInt32(yearOfBirth));
-                            group.AddStudent()
+                            faculty.GetGroup(groupNumber).AddStudent(surname, Convert.ToInt32(yearOfBirth));
                         }
                     }
                 }
+                return faculty;
             }
             catch (Exception)
             {
-
-                throw;
+                Console.WriteLine("Возникла ошибка при загрузке данных.");
             }
+
             
         }
     }
