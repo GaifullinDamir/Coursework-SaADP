@@ -144,24 +144,20 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void ListClearMemory(bool clearAll)
+        public void ListClearMemory()
         {
-            _facultyName = null;
-            _groupCounter = 1;
             int current = _groups[0].GetPNext();
             while (current != 0)
             {
                 _groups[current].GetGroupStack().StackClearMemory();
                 current = _groups[current].GetPNext();
             }
-            if(clearAll)
+            for (int i = 0; i < _numberOfGroups; i++)
             {
-                for (int i = 0; i < _numberOfGroups; i++)
-                {
-                    _groups[i] = null;
-                }
-                _groups = null;
+                _groups[i] = null;
             }
+            _groups = null;
+
         }
     }
 }

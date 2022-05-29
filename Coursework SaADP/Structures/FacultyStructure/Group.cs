@@ -33,9 +33,9 @@ namespace Coursework.Structures.FacultyStructure
             return (_pHead is null);
         }
 
-        public void AddStudent(string surname, string dateOfBirth)
+        public void AddStudent(string surname, int yearOfBirth)
         {
-            StackElement newElement = new StackElement(surname, dateOfBirth, _pHead);
+            StackElement newElement = new StackElement(surname, yearOfBirth, _pHead);
             _pHead = newElement;
         }
 
