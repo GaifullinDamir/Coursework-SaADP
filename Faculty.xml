@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tagFaculty>
+	<faculty facultyName ="ПМИ">
+		<group groupNumber = "4211">
+			<student surname = "Гайфуллин">
+				<student yearOfBirth = "2002">
+				</student>
+			</student>
+		</group>
+	</faculty>
+</tagFaculty>

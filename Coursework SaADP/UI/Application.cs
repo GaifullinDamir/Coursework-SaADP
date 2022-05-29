@@ -119,10 +119,9 @@ namespace Coursework.UI
         {
             if(_faculty is null)
             {
-                _faculty = new Faculty();
                 Console.Write("Введите название факультета: "); 
                 string facultyName = Console.ReadLine();
-                _faculty.SetFacultyName(facultyName);
+                _faculty = new Faculty(facultyName);
                 Console.WriteLine("Факультет добавлен.");
                 return;
             }
@@ -135,9 +134,8 @@ namespace Coursework.UI
             {
                 if (!(_faculty.FacultyIsFull()))
                 {
-                    Group group = new Group();
                     Console.Write("Введите номер группы: "); int groupNumber = InputInteger();
-                    group.SetGroupNumber(groupNumber);
+                    Group group = new Group(groupNumber);
                     _faculty.AddGroup(group);
                     Console.WriteLine("Группа добавлена.");
                     return;

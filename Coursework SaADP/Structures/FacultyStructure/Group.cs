@@ -24,11 +24,12 @@ namespace Coursework.Structures.FacultyStructure
             return _groupNumber;
         }
         #endregion
-        public Group()
+        public Group(int groupNumber)
         {
-            _groupNumber = 0; 
+            _groupNumber = groupNumber; 
             _pHead = null;
         }
+
         #region Class methods
         public bool GroupIsEmpty()
         {

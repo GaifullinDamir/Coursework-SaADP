@@ -44,8 +44,9 @@ namespace Coursework.Structures.FacultyStructure
         }
 
         #endregion
-        public Faculty()
+        public Faculty(string facultyName)
         {
+            _facultyName = facultyName;
             _groups[0] = new StaticListElement();
             _groups[0].SetPNext(0);
             _pHeedFree = 1;
