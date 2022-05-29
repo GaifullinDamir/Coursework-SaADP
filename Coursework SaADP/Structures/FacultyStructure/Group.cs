@@ -33,9 +33,9 @@ namespace Coursework.Structures.FacultyStructure
             return (_pHead is null);
         }
 
-        public void AddStudent(string surname, string dateOfBirth)
+        public void AddStudent(string surname, int yearOfBirth)
         {
-            StackElement newElement = new StackElement(surname, dateOfBirth, _pHead);
+            StackElement newElement = new StackElement(surname, yearOfBirth, _pHead);
             _pHead = newElement;
         }
 
@@ -61,13 +61,14 @@ namespace Coursework.Structures.FacultyStructure
                 {
                     Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
                         $" год рождения: {current.GetStudent().GetDateOfBirht()}");
+                    current = current.GetPNext();
                 }
                 return true;
             }
             return false;
         }
 
-        public void ClearMemory()
+        public void StackClearMemory()
         {
             StackElement current = _pHead;
             StackElement temp;
@@ -77,6 +78,7 @@ namespace Coursework.Structures.FacultyStructure
                 current = null;
                 current = temp;
             }
+            _pHead = null;
         }
     }
 }

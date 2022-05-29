@@ -4,7 +4,8 @@ namespace Coursework.Structures.FacultyStructure
 {
     class Student
     {
-        private string _surname, _dateOfBirth;
+        private string _surname;
+        private int _yearOfBirth;
 
         public void SetSurname(string surname)
         {
@@ -16,20 +17,20 @@ namespace Coursework.Structures.FacultyStructure
             return _surname;
         }
 
-        public void SetDateOfBirth(string dateOfBirth)
+        public void SetDateOfBirth(int yearOfBirth)
         {
-            _dateOfBirth = dateOfBirth;
+            _yearOfBirth = yearOfBirth;
         }
 
-        public string GetDateOfBirht()
+        public int GetDateOfBirht()
         {
-            return _dateOfBirth;
+            return _yearOfBirth;
         }
 
-        public Student(string surname, string dateOfBirth)
+        public Student(string surname, int yearOfBirth)
         {
             _surname = surname;
-            _dateOfBirth = dateOfBirth;
+            _yearOfBirth = yearOfBirth;
         }
 
     }
