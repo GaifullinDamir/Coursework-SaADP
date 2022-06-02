@@ -138,7 +138,7 @@ namespace Coursework.UI
                 if (!(_faculty.FacultyIsFull()))
                 {
                     int groupNumber = -1;
-                    while(groupNumber < 0)
+                    while (groupNumber < 0)
                     {
                         Console.Write("Введите номер группы: ");
                         groupNumber = InputInteger();
@@ -154,8 +154,8 @@ namespace Coursework.UI
                     }
                     return;
                 }
-                else if (_faculty.FacultyIsFull()) 
-                    Console.WriteLine("Факультет заполнен! Не более 10 групп.");
+                else if (_faculty.FacultyIsFull())
+                    Console.WriteLine($"Факультет заполнен! Не более {Faculty.GetMaxNumberOfGroups()} групп.");
             }
             else 
                 Console.WriteLine("Создайте факультет.");

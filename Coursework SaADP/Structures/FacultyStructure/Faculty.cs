@@ -6,11 +6,11 @@ namespace Coursework.Structures.FacultyStructure
     class Faculty
     {
         private string _facultyName;
-        private const int _numberOfGroups = 11;
+        private const int _MaxNumberOfGroups = 11;
         private int _groupCounter;
         private int _pHeedFree;
 
-        private StaticListElement[] _groups = new StaticListElement[_numberOfGroups];
+        private StaticListElement[] _groups = new StaticListElement[_MaxNumberOfGroups];
 
         #region Get/set methods
         public void SetFacultyName(string facultyName)
@@ -23,14 +23,9 @@ namespace Coursework.Structures.FacultyStructure
             return _facultyName;
         }
 
-        public static int GetNumberOfGroups()
+        public static int GetMaxNumberOfGroups()
         {
-            return _numberOfGroups;
-        }
-
-        public void IncreaseGroupCounter()
-        {
-            _groupCounter++;
+            return _MaxNumberOfGroups - 1;
         }
 
         public int GetGroupCounter()
@@ -55,12 +50,12 @@ namespace Coursework.Structures.FacultyStructure
             _groups[0] = new StaticListElement();
             _groups[0].SetPNext(0);
             _pHeedFree = 1;
-            for (int i = 1; i < _numberOfGroups; i++)
+            for (int i = 1; i < _MaxNumberOfGroups; i++)
             {
                 _groups[i] = new StaticListElement();
                 Group group = new Group(-1);
                 _groups[i].SetGroupStack(group);
-                int cell = (i == _numberOfGroups - 1) ? (0) : (i + 1);
+                int cell = (i == _MaxNumberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
             }
             _groupCounter = 0;
@@ -68,7 +63,7 @@ namespace Coursework.Structures.FacultyStructure
         #region Class methods
         public bool FacultyIsFull()
         {
-            return (_groupCounter + 1 == _numberOfGroups);
+            return (_groupCounter + 1 == _MaxNumberOfGroups);
         }
 
         public bool FacultyIsEmpty()
@@ -179,7 +174,7 @@ namespace Coursework.Structures.FacultyStructure
                 _groups[current].GetGroupStack().StackClearMemory();
                 current = _groups[current].GetPNext();
             }
-            for (int i = 0; i < _numberOfGroups; i++)
+            for (int i = 0; i < _MaxNumberOfGroups; i++)
             {
                 _groups[i] = null;
             }

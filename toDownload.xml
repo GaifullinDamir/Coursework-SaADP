@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <faculty facultyName ="ПМИ">
-	<group groupNumber = "4211">
+	<group groupNumber = "-4211">
 		<student>
 			<surname>Гайфуллин</surname>
 			<yearOfBirth>2002</yearOfBirth>

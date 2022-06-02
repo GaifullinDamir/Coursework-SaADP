@@ -28,7 +28,11 @@ namespace Coursework.XML
                         int groupNumber = int.Parse(xnode.Attributes.GetNamedItem("groupNumber").Value);
                         if (faculty.SearchGroup(groupNumber))
                         {
-                            Console.WriteLine($"Группа {groupNumber} уже есть в факультете.") ; continue; ;
+                            Console.WriteLine($"Группа {groupNumber} уже есть в факультете. Повтор будет пропущен.") ; continue; ;
+                        }
+                        if (groupNumber < 0)
+                        {
+                            Console.WriteLine($"Группа не должна иметь отрицательный номер."); continue;
                         }
                         Group group = new Group(groupNumber);
                         faculty.AddGroup(group);
