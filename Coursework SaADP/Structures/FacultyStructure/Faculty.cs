@@ -157,7 +157,7 @@ namespace Coursework.Structures.FacultyStructure
 
         public void ShowFacultys()
         {
-            Console.WriteLine($"Название факультета: {_facultyName}");
+            Console.WriteLine($"   Название факультета: {_facultyName}");
             if (!(FacultyIsEmpty()))
             {
                 int current = _groups[0].GetPNext();

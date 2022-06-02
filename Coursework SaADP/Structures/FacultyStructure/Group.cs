@@ -63,14 +63,15 @@ namespace Coursework.Structures.FacultyStructure
 
         public void ShowGroup()
         {
-            Console.WriteLine($" Группа №{_groupNumber}");
+            Console.WriteLine($"\n\tГруппа {_groupNumber}");
             if (!(GroupIsEmpty()))
             {
+                Console.WriteLine("\tФамилия   Год рождения");
                 StackElement current = _pHead;
                 while (current != null)
                 {
-                    Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
-                        $" год рождения: {current.GetStudent().GetDateOfBirth()}");
+                    Console.WriteLine("{0, 15} | {1, 5}", 
+                        current.GetStudent().GetSurname(), current.GetStudent().GetDateOfBirth());
                     current = current.GetPNext();
                 }
             }
