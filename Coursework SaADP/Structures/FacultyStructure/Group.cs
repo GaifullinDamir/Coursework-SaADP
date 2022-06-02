@@ -48,17 +48,17 @@ namespace Coursework.Structures.FacultyStructure
             _pHead = stackElement;
         }
 
-        public void DeleteStudent(ref bool check)
+        public bool DeleteStudent()
         {
             if (!(GroupIsEmpty()))
             {
                 StackElement current = _pHead;
                 _pHead = _pHead.GetPNext();
                 current = null;
-                check = true;
+                return true;
             }
             else
-                check = false;
+                return false;
         }
 
         public void ShowGroup()

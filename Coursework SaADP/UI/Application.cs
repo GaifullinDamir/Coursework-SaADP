@@ -137,16 +137,15 @@ namespace Coursework.UI
             {
                 if (!(_faculty.FacultyIsFull()))
                 {
-                    Console.Write("Введите номер группы: "); int groupNumber = -1;
+                    int groupNumber = -1;
                     while(groupNumber < 0)
                     {
+                        Console.Write("Введите номер группы: ");
                         groupNumber = InputInteger();
                     }
-                    bool check = false;
-                    _faculty.SearchGroup(groupNumber, ref check);
-                    if (check)
+                    if (_faculty.SearchGroup(groupNumber))
                     {
-                        Console.WriteLine("Такая группа уже есть в факультете."); return;
+                        Console.WriteLine($"Группа {groupNumber} уже есть в факультете."); return;
                     }
                     else
                     {
@@ -169,9 +168,9 @@ namespace Coursework.UI
                 if (!(_faculty.FacultyIsEmpty()))
                 {
                     Console.Write("Введите номер группы в которую нужно добавить студента: "); int groupNumber = InputInteger();
-                    bool check = false; int currGroup = 0;
-                    _faculty.SearchGroup(ref currGroup, groupNumber, ref check);
-                    if (check)
+                    bool checkSearch = false; int currGroup = 0;
+                    _faculty.SearchGroup(ref currGroup, groupNumber, ref checkSearch);
+                    if (checkSearch)
                     {
                         Group group = _faculty.GetGroup(currGroup);
                         Console.Write("Введите фамилия студента: "); string surname = Console.ReadLine();
@@ -222,12 +221,10 @@ namespace Coursework.UI
                 {
                     Console.Write("Введите номер группы из которой нужно удалить студента: "); int groupNumber = InputInteger();
                     bool checkSearch = false; int currGroup = 0;
-                    bool checkDelete = false;
                     _faculty.SearchGroup(ref currGroup, groupNumber, ref checkSearch);
                     if (checkSearch)
                     {
-                        _faculty.GetGroup(currGroup).DeleteStudent(ref checkDelete);
-                        if (checkDelete)
+                        if (_faculty.GetGroup(currGroup).DeleteStudent())
                         {
                             Console.WriteLine("Студент удалён.");
                         }

@@ -76,16 +76,17 @@ namespace Coursework.Structures.FacultyStructure
             return (_groupCounter == 0);
         }
 
-        public void FindBigger(ref int parent, ref int current, int addedElement)
+        public int FindBigger(ref int current, int addedGroupNumber)
         {
-            parent = 0;
+            int parent = 0;
             current = _groups[0].GetPNext();
             while (current != 0)
             {
-                if(_groups[current].GetGroupStack().GetGroupNumber() >= addedElement) { break;}
+                if(_groups[current].GetGroupStack().GetGroupNumber() >= addedGroupNumber) { break;}
                 parent = current;
                 current = _groups[current].GetPNext();
             }
+            return parent;
         }
 
         public int SearchGroup(ref int currGroup, int searchedElement, ref bool check)
@@ -106,19 +107,18 @@ namespace Coursework.Structures.FacultyStructure
             return prevGroup;
         }
 
-        public void SearchGroup(int searchedElement, ref bool check)
+        public bool SearchGroup(int searchedElement)
         {
             int currGroup = _groups[0].GetPNext();
             while (currGroup != 0)
             {
                 if (_groups[currGroup].GetGroupStack().GetGroupNumber() == searchedElement)
                 {
-                    check = true;
-                    break;
+                    return true;
                 }
-                else check = false;
                 currGroup = _groups[currGroup].GetPNext();
             }
+            return false;
         }
         public void AddGroup(Group group)
         {
@@ -132,8 +132,8 @@ namespace Coursework.Structures.FacultyStructure
                 _groupCounter++;
                 return;
             }
-            int prevGroup = 0; int currGroup = 0;
-            FindBigger(ref prevGroup, ref currGroup, group.GetGroupNumber());
+            int currGroup = 0;
+            int prevGroup = FindBigger(ref currGroup, group.GetGroupNumber());
             _groups[prevGroup].SetPNext(freeCell);
             int pNext = currGroup == 0 ? 0 : currGroup;
             _groups[freeCell].SetPNext(pNext);
