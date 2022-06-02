@@ -88,9 +88,9 @@ namespace Coursework.Structures.FacultyStructure
             }
         }
 
-        public void SearchGroup(ref int prevGroup, ref int currGroup, int searchedElement, ref bool check)
+        public int SearchGroup(ref int currGroup, int searchedElement, ref bool check)
         {
-            prevGroup = 0;
+            int prevGroup = 0;
             currGroup = _groups[0].GetPNext();
             while(currGroup != 0)
             {
@@ -103,6 +103,7 @@ namespace Coursework.Structures.FacultyStructure
                 prevGroup = currGroup;
                 currGroup = _groups[currGroup].GetPNext();
             }
+            return prevGroup;
         }
 
         public void SearchGroup(int searchedElement, ref bool check)
@@ -156,9 +157,9 @@ namespace Coursework.Structures.FacultyStructure
 
         public void ShowFacultys()
         {
+            Console.WriteLine($"Название факультета: {_facultyName}");
             if (!(FacultyIsEmpty()))
             {
-                Console.WriteLine($"Название факультета: {_facultyName}");
                 int current = _groups[0].GetPNext();
                 while (current != 0)
                 {
@@ -166,6 +167,8 @@ namespace Coursework.Structures.FacultyStructure
                     current = _groups[current].GetPNext();
                 }
             }
+            else
+                Console.WriteLine("Групп для вывода нет.");
         }
 
         public void ListClearMemory()

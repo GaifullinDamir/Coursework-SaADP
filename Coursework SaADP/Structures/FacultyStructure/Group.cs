@@ -48,33 +48,34 @@ namespace Coursework.Structures.FacultyStructure
             _pHead = stackElement;
         }
 
-        public bool DeleteStudent()
+        public void DeleteStudent(ref bool check)
         {
-            if(!(GroupIsEmpty()))
+            if (!(GroupIsEmpty()))
             {
                 StackElement current = _pHead;
                 _pHead = _pHead.GetPNext();
                 current = null;
-                return true;
+                check = true;
             }
-            return false;
+            else
+                check = false;
         }
 
-        public bool ShowGroup()
+        public void ShowGroup()
         {
-            if(!(GroupIsEmpty()))
+            Console.WriteLine($" Группа №{_groupNumber}");
+            if (!(GroupIsEmpty()))
             {
                 StackElement current = _pHead;
-                Console.WriteLine($" Группа №{_groupNumber}");
                 while (current != null)
                 {
                     Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
                         $" год рождения: {current.GetStudent().GetDateOfBirth()}");
                     current = current.GetPNext();
                 }
-                return true;
             }
-            return false;
+            else
+                Console.WriteLine("Студентов для вывода нет.");
         }
 
         public void StackClearMemory()
