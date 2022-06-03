@@ -50,31 +50,33 @@ namespace Coursework.Structures.FacultyStructure
 
         public bool DeleteStudent()
         {
-            if(!(GroupIsEmpty()))
+            if (!(GroupIsEmpty()))
             {
                 StackElement current = _pHead;
                 _pHead = _pHead.GetPNext();
                 current = null;
                 return true;
             }
-            return false;
+            else
+                return false;
         }
 
-        public bool ShowGroup()
+        public void ShowGroup()
         {
-            if(!(GroupIsEmpty()))
+            Console.WriteLine($"\n\tГруппа {_groupNumber}");
+            if (!(GroupIsEmpty()))
             {
+                Console.WriteLine("\tФамилия   Год рождения");
                 StackElement current = _pHead;
-                Console.WriteLine($" Группа №{_groupNumber}");
                 while (current != null)
                 {
-                    Console.WriteLine($" Фамилия: {current.GetStudent().GetSurname()};" +
-                        $" год рождения: {current.GetStudent().GetDateOfBirth()}");
+                    Console.WriteLine("{0, 15} | {1, 5}", 
+                        current.GetStudent().GetSurname(), current.GetStudent().GetDateOfBirth());
                     current = current.GetPNext();
                 }
-                return true;
             }
-            return false;
+            else
+                Console.WriteLine("Студентов для вывода нет.");
         }
 
         public void StackClearMemory()

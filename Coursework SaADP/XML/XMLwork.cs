@@ -26,29 +26,31 @@ namespace Coursework.XML
                             break;
                         }
                         int groupNumber = int.Parse(xnode.Attributes.GetNamedItem("groupNumber").Value);
-                        bool check = false;
-                        faculty.SearchGroup(groupNumber, ref check);
-                        if (check)
+                        if (faculty.SearchGroup(groupNumber))
                         {
-                            Console.WriteLine("Такая группа уже есть в факультете."); continue; ;
+                            Console.WriteLine($"Группа {groupNumber} уже есть в факультете. Повтор будет пропущен.") ; continue; ;
+                        }
+                        if (groupNumber < 0)
+                        {
+                            Console.WriteLine($"Группа не должна иметь отрицательный номер."); continue;
                         }
                         Group group = new Group(groupNumber);
                         faculty.AddGroup(group);
-                        foreach (XmlNode childnode in xnode.ChildNodes)
+                        foreach (XmlNode childNode in xnode.ChildNodes)
                         {
                             string surname = null;
                             string yearOfBirth = null;
 
-                            foreach (XmlNode ch in childnode.ChildNodes)
+                            foreach (XmlNode child in childNode.ChildNodes)
                             {
-                                if (ch.Name == "surname")
+                                if (child.Name == "surname")
                                 {
-                                    surname = ch.InnerText;
+                                    surname = child.InnerText;
                                 }
 
-                                if (ch.Name == "yearOfBirth")
+                                if (child.Name == "yearOfBirth")
                                 {
-                                    yearOfBirth = ch.InnerText;
+                                    yearOfBirth = child.InnerText;
                                 }
                             }
                             group.AddStudent(surname, Convert.ToInt32(yearOfBirth));

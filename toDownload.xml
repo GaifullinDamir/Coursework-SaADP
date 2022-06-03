@@ -1,111 +1,172 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <faculty facultyName ="ПМИ">
-	<group groupNumber = "4211">
+	<group groupNumber = "-4211">
 		<student>
 			<surname>Гайфуллин</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Кириллов</surname>
+			<surname>Гайфуллин</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Потапов</surname>
+			<surname>Горохов</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Шлеменко</surname>
+			<surname>Зигангиров</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Августинов</surname>
+			<surname>Исхаков</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Устинов</surname>
+			<surname>Калеев</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Королев</surname>
+			<surname>Маратканов</surname>
 			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Мулдакаев</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Осанов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Полежаев</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Соловьев</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Феопентов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Яблонскас</surname>
+			<yearOfBirth>2001</yearOfBirth>
 		</student>
 	</group>
 	
-	<group groupNumber = "4500">
+	<group groupNumber = "4210">
 		<student>
-			<surname>Перепелкин</surname>
+			<surname>Баранов</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Антипов</surname>
+			<surname>Белкова</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Филиппов</surname>
+			<surname>Галеева</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Дажунц</surname>
+			<surname>Галимов</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 		<student>
-			<surname>Оксфордский</surname>
+			<surname>Курбангалеев</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "4567">
 		<student>
-			<surname>Перепелкин</surname>
+			<surname>Маннанов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Мингалеев</surname>
+			<yearOfBirth>2001</yearOfBirth>
+		</student>
+		<student>
+			<surname>Нигамадянов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Платонов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Тарасов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Фаттахов</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Шавалиева</surname>
+			<yearOfBirth>2002</yearOfBirth>
+		</student>
+		<student>
+			<surname>Щербакова</surname>
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 	</group>
 	<group groupNumber = "4210">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Павлов</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
 	</group>
-	<group groupNumber = "451">
+	<group groupNumber = "4419">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Алексеев</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "4520">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Кирсанов</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "43">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Потапов</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "4125">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Дажунц</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "4125">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Нелюбин</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "45122">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Галлямов</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
-	</group>
-	<group groupNumber = "77777">
 		<student>
-			<surname>Перепелкин</surname>
-			<yearOfBirth>2002</yearOfBirth>
+			<surname>Аверкин</surname>
+			<yearOfBirth>1999</yearOfBirth>
 		</student>
 	</group>
+	<group groupNumber = "4312">
+		<student>
+			<surname>Филиппов</surname>
+			<yearOfBirth>2000</yearOfBirth>
+		</student>
+		<student>
+			<surname>Борисов</surname>
+			<yearOfBirth>2000</yearOfBirth>
+		</student>
+		<student>
+			<surname>Ниц</surname>
+			<yearOfBirth>2000</yearOfBirth>
+		</student>
+		<student>
+			<surname>Фёдоров</surname>
+			<yearOfBirth>2000</yearOfBirth>
+		</student>
+		<student>
+			<surname>Клинов</surname>
+			<yearOfBirth>2000</yearOfBirth>
+		</student>
+	</group>
+	
 </faculty>
