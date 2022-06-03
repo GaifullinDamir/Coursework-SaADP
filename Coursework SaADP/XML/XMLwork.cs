@@ -15,53 +15,69 @@ namespace Coursework.XML
                 XmlDocument xDoc = new XmlDocument();
                 xDoc.Load(filePath);
                 XmlElement xRoot = xDoc.DocumentElement;
+                if (xRoot.Name != "faculty") { throw new Exception("Не найден тег faculty."); }
+                if (xRoot.HasAttribute("facultyName") == false) { throw new Exception("Не найден аттрибут facultyName у тега faculty."); }
                 string facultyName = xRoot.GetAttribute("facultyName").ToString();
+                if (facultyName == String.Empty) { throw new Exception("Пустое название факультета."); }
                 faculty = new Faculty(facultyName);
                 if (xRoot != null)
                 {
                     foreach (XmlElement xnode in xRoot)
                     {
-                        if(faculty.GetGroupCounter() == 10)
+                        if (faculty.GetGroupCounter() == 10)
                         {
                             break;
                         }
-                        int groupNumber = int.Parse(xnode.Attributes.GetNamedItem("groupNumber").Value);
+                        if (xnode.Name != "group") { throw new Exception("Не найден тег group."); }
+                        if (xnode.HasAttribute("groupNumber") == false) { throw new Exception("Не найден аттрибут groupNumber у тега group."); }
+                        string groupNumberString = xnode.Attributes.GetNamedItem("groupNumber").Value;
+                        if (groupNumberString == String.Empty) { throw new Exception("Пустой номер группы."); }
+                        int groupNumber;
+                        bool GroupNumberIsDigit = Int32.TryParse(groupNumberString, out groupNumber);
+                        if (!GroupNumberIsDigit) { throw new Exception($"Номер группы {groupNumberString} должен быть числом"); }
+                        
                         if (faculty.SearchGroup(groupNumber))
                         {
                             Console.WriteLine($"Группа {groupNumber} уже есть в факультете. Повтор будет пропущен.") ; continue; ;
                         }
                         if (groupNumber < 0)
                         {
-                            Console.WriteLine($"Группа не должна иметь отрицательный номер."); continue;
+                            Console.WriteLine($"Группа {groupNumber} не должна иметь отрицательный номер."); continue;
                         }
                         Group group = new Group(groupNumber);
                         faculty.AddGroup(group);
                         foreach (XmlNode childNode in xnode.ChildNodes)
                         {
                             string surname = null;
-                            string yearOfBirth = null;
-
+                            string yearOfBirthString = null;
+                            if (childNode.Name != "student") { throw new Exception($"В группе {groupNumber} не найден тег student."); }
                             foreach (XmlNode child in childNode.ChildNodes)
                             {
                                 if (child.Name == "surname")
                                 {
                                     surname = child.InnerText;
+                                    if (surname == String.Empty) { throw new Exception($"В группе {groupNumber} есть пустое имя студента."); }
                                 }
 
-                                if (child.Name == "yearOfBirth")
+                                else if (child.Name == "yearOfBirth")
                                 {
-                                    yearOfBirth = child.InnerText;
+                                    yearOfBirthString = child.InnerText;
                                 }
+                                else
+                                    throw new Exception($"В группе {groupNumber} неправильные дочерние узлы у одного из студентов.") ;
                             }
-                            group.AddStudent(surname, Convert.ToInt32(yearOfBirth));
+                            int yearOfBirth;
+                            bool yearOfBirthIsDigit = Int32.TryParse(yearOfBirthString, out yearOfBirth);
+                            if (!yearOfBirthIsDigit) { throw new Exception($"В группе {groupNumber} год рождения {yearOfBirthString} должен быть числом"); }
+                            group.AddStudent(surname, Convert.ToInt32(yearOfBirthString));
                         }
                     }
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("Указан не верный адрес либо некие другие проблемы.");
+                Console.WriteLine(ex.Message);
                 return false;
             }
             
