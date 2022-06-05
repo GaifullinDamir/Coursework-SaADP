@@ -6,7 +6,7 @@ using Coursework.Structures.FacultyStructure;
 
 namespace Coursework.XML
 {
-    class XMLwork
+    class XMLWork
     {
         public bool DownloadFaculty(string filePath, ref Faculty faculty)
         {

@@ -8,9 +8,9 @@ namespace Coursework.Structures.FacultyStructure
         private string _facultyName;
         private const int _MaxNumberOfGroups = 11;
         private int _groupCounter;
-        private int _pHeedFree;
+        private int _pHeadFree;
+        private StaticListElement[] _groups;
 
-        private StaticListElement[] _groups = new StaticListElement[_MaxNumberOfGroups];
 
         #region Get/set methods
         public void SetFacultyName(string facultyName)
@@ -44,17 +44,36 @@ namespace Coursework.Structures.FacultyStructure
         }
 
         #endregion
+        //public Faculty(string facultyName)
+        //{
+        //    _groups = new StaticListElement[_MaxNumberOfGroups];
+        //    _facultyName = facultyName;
+        //    _groups[0] = new StaticListElement();
+        //    _groups[0].SetPNext(0);
+        //    _pHeadFree = 1;
+        //    for (int i = 1; i < _MaxNumberOfGroups; i++)
+        //    {
+        //        _groups[i] = new StaticListElement();
+        //        Group group = new Group(-1);
+        //        _groups[i].SetGroupStack(group);
+        //        int cell = (i == _MaxNumberOfGroups - 1) ? (0) : (i + 1);
+        //        _groups[i].SetPNext(cell);
+        //    }
+        //    _groupCounter = 0;
+        //}
+
         public Faculty(string facultyName)
         {
+            _groups = new StaticListElement[_MaxNumberOfGroups];
             _facultyName = facultyName;
             _groups[0] = new StaticListElement();
             _groups[0].SetPNext(0);
-            _pHeedFree = 1;
+            _pHeadFree = 1;
             for (int i = 1; i < _MaxNumberOfGroups; i++)
             {
                 _groups[i] = new StaticListElement();
-                Group group = new Group(-1);
-                _groups[i].SetGroupStack(group);
+                //Group group = new Group(-1);
+                //_groups[i].SetGroupStack(group);
                 int cell = (i == _MaxNumberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
             }
@@ -117,8 +136,8 @@ namespace Coursework.Structures.FacultyStructure
         }
         public void AddGroup(Group group)
         {
-            int freeCell = _pHeedFree;
-            _pHeedFree = _groups[freeCell].GetPNext();
+            int freeCell = _pHeadFree;
+            _pHeadFree = _groups[freeCell].GetPNext();
             _groups[freeCell].SetGroupStack(group);
             if (FacultyIsEmpty())
             {
@@ -145,8 +164,8 @@ namespace Coursework.Structures.FacultyStructure
         {
             _groups[currGroup].GetGroupStack().StackClearMemory();
             _groups[prevGroup].SetPNext(_groups[currGroup].GetPNext());
-            _groups[currGroup].SetPNext(_pHeedFree);
-            _pHeedFree = currGroup;
+            _groups[currGroup].SetPNext(_pHeadFree);
+            _pHeadFree = currGroup;
             _groupCounter--;
         }
 

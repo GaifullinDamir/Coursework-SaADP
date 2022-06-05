@@ -265,7 +265,7 @@ namespace Coursework.UI
         {
             if(!(_faculty is null))
             {
-                XMLwork xmlWork = new XMLwork();
+                XMLWork xmlWork = new XMLWork();
                 Console.WriteLine("Введите путь к файлу: "); string filePath = Console.ReadLine();
                 bool check = xmlWork.UploadFaculty(filePath, _faculty);
                 if (check) { Console.WriteLine("Данные факультета выгружены в XML-файл."); }
@@ -277,7 +277,7 @@ namespace Coursework.UI
         {
             if(_faculty is null)
             {
-                XMLwork xmlWork = new XMLwork();
+                XMLWork xmlWork = new XMLWork();
                 Console.WriteLine("Введите путь к файлу: "); string filePath = Console.ReadLine();
                 bool check = xmlWork.DownloadFaculty(filePath, ref _faculty);
                 if (check){ Console.WriteLine("Факультет загружен и добавлен."); }
