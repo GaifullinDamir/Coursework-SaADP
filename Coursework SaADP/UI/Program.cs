@@ -9,7 +9,6 @@ namespace Coursework.UI
         {
             Application application = new Application();
             application.AppCycle();
-            
         }
     }
 }

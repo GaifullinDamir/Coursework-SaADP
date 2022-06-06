@@ -8,19 +8,9 @@ namespace Coursework.Structures.ElementStructure
         private Student _student;
         private StackElement _pNext;
 
-        public void SetStudent(Student student)
-        {
-            _student = student;
-        }
-
         public Student GetStudent()
         {
             return _student;
-        }
-
-        public void SetPNext(StackElement pNext)
-        {
-            _pNext = pNext;
         }
 
         public StackElement GetPNext()
