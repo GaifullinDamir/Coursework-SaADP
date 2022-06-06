@@ -79,8 +79,7 @@ namespace Coursework.XML
             {
                 Console.WriteLine(ex.Message);
                 return false;
-            }
-            
+            }  
         }
 
         public bool UploadFaculty(string filePath, Faculty faculty)

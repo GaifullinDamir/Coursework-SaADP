@@ -122,8 +122,13 @@ namespace Coursework.UI
         {
             if(_faculty is null)
             {
-                Console.Write("Введите название факультета: "); 
-                string facultyName = Console.ReadLine();
+                
+                string facultyName ="";
+                while (facultyName == String.Empty)
+                {
+                    Console.Write("Введите название факультета: ");
+                    facultyName = Console.ReadLine();
+                }
                 _faculty = new Faculty(facultyName);
                 Console.WriteLine("Факультет создан.");
                 return;
@@ -173,7 +178,12 @@ namespace Coursework.UI
                     if (checkSearch)
                     {
                         Group group = _faculty.GetGroup(currGroup);
-                        Console.Write("Введите фамилия студента: "); string surname = Console.ReadLine();
+                        string surname = "";
+                        while (surname == String.Empty)
+                        {
+                            Console.Write("Введите Фамилию студента : ");
+                            surname = Console.ReadLine();
+                        }
                         int yearOfBirth = -1;
                         while(yearOfBirth < 0)
                         {
@@ -186,6 +196,8 @@ namespace Coursework.UI
                     else
                         Console.WriteLine("Такой группы нет.");
                 }
+                else
+                    Console.WriteLine("Добавьте группу.");
             }
             else
                 Console.WriteLine("Создайте факультет.");

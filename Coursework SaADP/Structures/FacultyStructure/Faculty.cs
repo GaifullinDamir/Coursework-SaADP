@@ -44,24 +44,6 @@ namespace Coursework.Structures.FacultyStructure
         }
 
         #endregion
-        //public Faculty(string facultyName)
-        //{
-        //    _groups = new StaticListElement[_MaxNumberOfGroups];
-        //    _facultyName = facultyName;
-        //    _groups[0] = new StaticListElement();
-        //    _groups[0].SetPNext(0);
-        //    _pHeadFree = 1;
-        //    for (int i = 1; i < _MaxNumberOfGroups; i++)
-        //    {
-        //        _groups[i] = new StaticListElement();
-        //        Group group = new Group(-1);
-        //        _groups[i].SetGroupStack(group);
-        //        int cell = (i == _MaxNumberOfGroups - 1) ? (0) : (i + 1);
-        //        _groups[i].SetPNext(cell);
-        //    }
-        //    _groupCounter = 0;
-        //}
-
         public Faculty(string facultyName)
         {
             _groups = new StaticListElement[_MaxNumberOfGroups];
@@ -72,8 +54,6 @@ namespace Coursework.Structures.FacultyStructure
             for (int i = 1; i < _MaxNumberOfGroups; i++)
             {
                 _groups[i] = new StaticListElement();
-                //Group group = new Group(-1);
-                //_groups[i].SetGroupStack(group);
                 int cell = (i == _MaxNumberOfGroups - 1) ? (0) : (i + 1);
                 _groups[i].SetPNext(cell);
             }
@@ -120,7 +100,6 @@ namespace Coursework.Structures.FacultyStructure
             }
             return prevGroup;
         }
-
         public bool SearchGroup(int searchedElement)
         {
             int currGroup = _groups[0].GetPNext();

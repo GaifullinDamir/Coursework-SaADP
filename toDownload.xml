@@ -110,12 +110,6 @@
 			<yearOfBirth>2002</yearOfBirth>
 		</student>
 	</group>
-	<group groupNumber = "4210">
-		<student>
-			<surname>Павлов</surname>
-			<yearOfBirth>1999</yearOfBirth>
-		</student>
-	</group>
 	<group groupNumber = "4419">
 		<student>
 			<surname>Алексеев</surname>

@@ -14,11 +14,6 @@ namespace Coursework.Structures.FacultyStructure
             return _pHead;
         }
 
-        public void SetGroupNumber(int groupNumber)
-        {
-            _groupNumber = groupNumber;
-        }
-
         public int GetGroupNumber()
         {
             return _groupNumber;

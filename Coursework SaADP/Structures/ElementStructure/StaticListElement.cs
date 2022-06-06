@@ -33,6 +33,5 @@ namespace Coursework.Structures.ElementStructure
         {
             return _pNext;
         }
-
     }
 }

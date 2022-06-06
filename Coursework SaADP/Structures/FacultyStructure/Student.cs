@@ -7,19 +7,9 @@ namespace Coursework.Structures.FacultyStructure
         private string _surname;
         private int _yearOfBirth;
 
-        public void SetSurname(string surname)
-        {
-            _surname = surname;
-        }
-
         public string GetSurname()
         {
             return _surname;
-        }
-
-        public void SetDateOfBirth(int yearOfBirth)
-        {
-            _yearOfBirth = yearOfBirth;
         }
 
         public int GetDateOfBirth()
@@ -32,6 +22,5 @@ namespace Coursework.Structures.FacultyStructure
             _surname = surname;
             _yearOfBirth = yearOfBirth;
         }
-
     }
 }
