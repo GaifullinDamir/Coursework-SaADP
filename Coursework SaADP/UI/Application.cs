@@ -196,6 +196,8 @@ namespace Coursework.UI
                     else
                         Console.WriteLine("Такой группы нет.");
                 }
+                else
+                    Console.WriteLine("Добавьте группу.");
             }
             else
                 Console.WriteLine("Создайте факультет.");
